@@ -1,0 +1,544 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Eli Cristobal — I ship AI products end to end</title>
+<meta name="description" content="Eli Cristobal is a solo founder shipping AI-powered SaaS products end to end: Title22, RentyApp, TheJudgy, OwnSite, iGuide, PostPilots.">
+<meta property="og:title" content="Eli Cristobal — I ship AI products end to end">
+<meta property="og:description" content="Solo founder of RunP8. Six live AI products. Idea → production, no handoffs.">
+<meta property="og:type" content="website">
+<meta property="og:url" content="https://elicristobal.com">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Sora:wght@500;600;700;800&family=Manrope:wght@400;500;600;700&family=IBM+Plex+Mono:wght@400;500&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --ink:#0b1526;
+    --ink-2:#101d33;
+    --foam:#eef4f2;
+    --mist:#9fb2c4;
+    --live:#3fd6b0;
+    --amber:#f0a35e;
+    --card:#12213a;
+    --line:rgba(159,178,196,.16);
+    --radius:18px;
+  }
+  *{margin:0;padding:0;box-sizing:border-box}
+  html{scroll-behavior:smooth}
+  body{
+    background:var(--ink);
+    color:var(--foam);
+    font-family:'Manrope',system-ui,sans-serif;
+    line-height:1.6;
+    overflow-x:hidden;
+  }
+  ::selection{background:var(--live);color:var(--ink)}
+
+  /* ---- aurora backdrop ---- */
+  .aurora{
+    position:fixed;inset:0;z-index:-1;overflow:hidden;
+    background:radial-gradient(120% 90% at 50% 0%,#132441 0%,var(--ink) 60%);
+  }
+  .aurora span{
+    position:absolute;border-radius:50%;filter:blur(90px);opacity:.35;
+    animation:drift 26s ease-in-out infinite alternate;
+  }
+  .aurora span:nth-child(1){width:52vmax;height:36vmax;left:-12vmax;top:-14vmax;background:#1d5b6e}
+  .aurora span:nth-child(2){width:44vmax;height:30vmax;right:-14vmax;top:8vmax;background:#20406b;animation-delay:-8s}
+  .aurora span:nth-child(3){width:36vmax;height:26vmax;left:22vmax;top:46vmax;background:#155247;animation-delay:-16s}
+  @keyframes drift{
+    from{transform:translate3d(0,0,0) scale(1)}
+    to{transform:translate3d(5vmax,3vmax,0) scale(1.12)}
+  }
+
+  .wrap{max-width:720px;margin:0 auto;padding:0 22px}
+
+  /* ---- load-in + scroll reveals ---- */
+  .rise{opacity:0;transform:translateY(18px);transition:opacity .7s ease,transform .7s ease}
+  .rise.in{opacity:1;transform:none}
+  header .rise:nth-child(1){transition-delay:.05s}
+  header .rise:nth-child(2){transition-delay:.15s}
+  header .rise:nth-child(3){transition-delay:.28s}
+  header .rise:nth-child(4){transition-delay:.4s}
+  header .rise:nth-child(5){transition-delay:.52s}
+
+  @media (prefers-reduced-motion:reduce){
+    .aurora span{animation:none}
+    .rise{opacity:1;transform:none;transition:none}
+    *{transition:none!important;animation-duration:.01s!important}
+  }
+
+  /* ---- hero ---- */
+  header{padding:76px 0 34px}
+  .status-strip{
+    display:inline-flex;align-items:center;gap:9px;
+    font-family:'IBM Plex Mono',monospace;font-size:.78rem;letter-spacing:.08em;
+    color:var(--live);border:1px solid rgba(63,214,176,.35);
+    padding:7px 14px;border-radius:100px;background:rgba(63,214,176,.07);
+    margin-bottom:26px;
+  }
+  .dot{width:8px;height:8px;border-radius:50%;background:var(--live);position:relative;flex:none}
+  .dot::after{
+    content:"";position:absolute;inset:-4px;border-radius:50%;
+    border:1.5px solid var(--live);opacity:.7;animation:pulse 2s ease-out infinite;
+  }
+  @keyframes pulse{from{transform:scale(.5);opacity:.8}to{transform:scale(1.6);opacity:0}}
+  h1{
+    font-family:'Sora',sans-serif;font-weight:800;
+    font-size:clamp(2.3rem,8vw,3.4rem);line-height:1.08;letter-spacing:-.02em;
+    margin-bottom:18px;
+  }
+  h1 em{font-style:normal;color:var(--live)}
+  .lede{color:var(--mist);font-size:1.05rem;max-width:46ch;margin-bottom:28px}
+  .hero-actions{display:flex;gap:12px;flex-wrap:wrap}
+  .btn{
+    display:inline-flex;align-items:center;gap:8px;
+    font-family:'Sora',sans-serif;font-weight:600;font-size:.95rem;
+    padding:13px 22px;border-radius:12px;text-decoration:none;
+    transition:transform .15s ease,box-shadow .15s ease;
+  }
+  .btn:active{transform:scale(.97)}
+  .btn-primary{background:var(--live);color:var(--ink)}
+  .btn-primary:hover{box-shadow:0 6px 24px rgba(63,214,176,.35)}
+  .btn-ghost{border:1px solid var(--line);color:var(--foam)}
+  .btn-ghost:hover{border-color:var(--mist)}
+  .btn-amber{border:1px solid rgba(240,163,94,.45);color:var(--amber)}
+  .btn-amber:hover{box-shadow:0 6px 24px rgba(240,163,94,.2)}
+
+  /* ---- stats row ---- */
+  .stats{
+    display:grid;grid-template-columns:repeat(3,1fr);gap:12px;
+    margin-top:38px;
+  }
+  .stat{
+    border:1px solid var(--line);border-radius:14px;padding:16px 10px;
+    text-align:center;background:rgba(255,255,255,.02);
+  }
+  .stat b{
+    display:block;font-family:'Sora',sans-serif;font-weight:800;
+    font-size:1.7rem;color:var(--foam);line-height:1.1;
+  }
+  .stat span{
+    font-family:'IBM Plex Mono',monospace;font-size:.62rem;letter-spacing:.12em;
+    text-transform:uppercase;color:var(--mist);
+  }
+
+  /* ---- section headers ---- */
+  .sec-label{
+    font-family:'IBM Plex Mono',monospace;font-size:.75rem;letter-spacing:.18em;
+    text-transform:uppercase;color:var(--mist);
+    display:flex;align-items:center;gap:12px;margin-bottom:20px;
+  }
+  .sec-label::after{content:"";flex:1;height:1px;background:var(--line)}
+  section{padding:34px 0}
+
+  /* ---- product cards ---- */
+  .grid{display:grid;gap:14px}
+  .card{
+    display:block;position:relative;text-decoration:none;color:var(--foam);
+    background:linear-gradient(160deg,var(--card),var(--ink-2));
+    border:1px solid var(--line);border-radius:var(--radius);
+    padding:22px 22px 20px;overflow:hidden;
+    transition:transform .18s ease,border-color .18s ease,box-shadow .18s ease;
+  }
+  .card::before{ /* cursor glow */
+    content:"";position:absolute;inset:0;border-radius:inherit;
+    background:radial-gradient(220px circle at var(--mx,50%) var(--my,50%),rgba(63,214,176,.12),transparent 65%);
+    opacity:0;transition:opacity .25s ease;pointer-events:none;
+  }
+  .card:hover::before{opacity:1}
+  .card:hover,.card:focus-visible{
+    transform:translateY(-3px);border-color:rgba(63,214,176,.5);
+    box-shadow:0 12px 32px rgba(0,0,0,.35);
+  }
+  .card:focus-visible{outline:2px solid var(--live);outline-offset:3px}
+  .card-top{display:flex;align-items:center;justify-content:space-between;margin-bottom:8px;gap:10px}
+  .card h3{font-family:'Sora',sans-serif;font-weight:700;font-size:1.2rem;letter-spacing:-.01em}
+  .live-badge{
+    display:inline-flex;align-items:center;gap:7px;
+    font-family:'IBM Plex Mono',monospace;font-size:.68rem;letter-spacing:.1em;
+    color:var(--live);flex:none;
+  }
+  .card p{color:var(--mist);font-size:.92rem;max-width:52ch}
+  .card .go{
+    position:absolute;right:20px;bottom:18px;color:var(--live);
+    font-family:'IBM Plex Mono',monospace;font-size:.8rem;
+    opacity:0;transform:translateX(-6px);transition:all .18s ease;
+  }
+  .card:hover .go,.card:focus-visible .go{opacity:1;transform:translateX(0)}
+  .card .domain{
+    font-family:'IBM Plex Mono',monospace;font-size:.72rem;color:var(--mist);
+    opacity:.75;margin-top:10px;display:block;
+  }
+  .tagrow{display:flex;gap:6px;flex-wrap:wrap;margin-top:12px}
+  .tag{
+    font-family:'IBM Plex Mono',monospace;font-size:.62rem;letter-spacing:.06em;
+    color:var(--mist);border:1px solid var(--line);border-radius:6px;padding:3px 8px;
+  }
+
+  /* ---- principles ---- */
+  .principles{display:grid;gap:12px}
+  .principle{
+    border-left:2px solid var(--amber);padding:4px 0 4px 18px;
+  }
+  .principle h4{font-family:'Sora',sans-serif;font-weight:700;font-size:1rem;margin-bottom:3px}
+  .principle p{color:var(--mist);font-size:.9rem}
+
+  /* ---- stack chips ---- */
+  .chips{display:flex;flex-wrap:wrap;gap:9px}
+  .chip{
+    font-family:'IBM Plex Mono',monospace;font-size:.76rem;
+    border:1px solid var(--line);border-radius:100px;
+    padding:7px 14px;color:var(--mist);background:rgba(255,255,255,.02);
+    transition:border-color .2s ease,color .2s ease;
+  }
+  .chip:hover{border-color:var(--live);color:var(--foam)}
+
+  /* ---- about ---- */
+  .about p{color:var(--mist);margin-bottom:14px}
+  .about strong{color:var(--foam);font-weight:600}
+  .creds{display:grid;gap:8px;margin-top:18px}
+  .cred{display:flex;align-items:baseline;gap:12px;font-size:.9rem;color:var(--mist)}
+  .cred::before{content:"✓";color:var(--amber);font-family:'IBM Plex Mono',monospace;font-size:.85rem}
+
+  /* ---- contact ---- */
+  .contact-card{
+    background:linear-gradient(160deg,rgba(63,214,176,.09),rgba(240,163,94,.06));
+    border:1px solid rgba(63,214,176,.25);border-radius:var(--radius);
+    padding:34px 24px;text-align:center;
+  }
+  .contact-card h2{font-family:'Sora',sans-serif;font-size:1.5rem;margin-bottom:8px}
+  .contact-card p{color:var(--mist);margin-bottom:22px;font-size:.95rem}
+
+  /* ---- AI interview widget ---- */
+  .chat-box{margin-top:18px;border:1px solid var(--line);border-radius:14px;background:rgba(0,0,0,.18);overflow:hidden}
+  .chat-log{max-height:320px;overflow-y:auto;padding:16px;display:flex;flex-direction:column;gap:10px}
+  .msg{max-width:88%;padding:10px 14px;border-radius:12px;font-size:.9rem;line-height:1.5}
+  .msg.user{align-self:flex-end;background:var(--live);color:var(--ink);border-bottom-right-radius:4px}
+  .msg.ai{align-self:flex-start;background:rgba(255,255,255,.06);color:var(--foam);border:1px solid var(--line);border-bottom-left-radius:4px}
+  .msg.ai.thinking{color:var(--mist);font-family:'IBM Plex Mono',monospace;font-size:.78rem}
+  .chat-row{display:flex;gap:8px;padding:12px;border-top:1px solid var(--line)}
+  .chat-row input{
+    flex:1;background:rgba(255,255,255,.04);border:1px solid var(--line);
+    border-radius:10px;padding:12px 14px;color:var(--foam);
+    font-family:'Manrope',sans-serif;font-size:.92rem;min-width:0;
+  }
+  .chat-row input::placeholder{color:var(--mist);opacity:.7}
+  .chat-row input:focus{outline:none;border-color:var(--live)}
+  .chat-row button{
+    font-family:'Sora',sans-serif;font-weight:600;font-size:.9rem;
+    background:var(--live);color:var(--ink);border:none;border-radius:10px;
+    padding:0 18px;cursor:pointer;flex:none;
+  }
+  .chat-row button:disabled{opacity:.5;cursor:default}
+  .chat-hints{display:flex;gap:8px;flex-wrap:wrap;padding:0 12px 12px}
+  .hint{
+    font-family:'IBM Plex Mono',monospace;font-size:.68rem;color:var(--mist);
+    border:1px solid var(--line);border-radius:100px;padding:6px 12px;
+    cursor:pointer;background:none;
+  }
+  .hint:hover{border-color:var(--live);color:var(--foam)}
+
+  footer{
+    padding:34px 0 46px;text-align:center;
+    font-family:'IBM Plex Mono',monospace;font-size:.72rem;color:var(--mist);opacity:.7;
+  }
+  footer a{color:var(--mist)}
+</style>
+</head>
+<body>
+
+<div class="aurora" aria-hidden="true"><span></span><span></span><span></span></div>
+
+<div class="wrap">
+
+  <header>
+    <div class="rise status-strip"><span class="dot"></span>6 PRODUCTS · LIVE NOW</div>
+    <h1 class="rise">I ship AI products <em>end to end.</em></h1>
+    <p class="rise lede">I'm Eli Cristobal — solo founder of RunP8. I design, build, deploy, and grow AI-powered SaaS products: no PM, no designer, no architect. Just idea → production. Everything below is live. Tap anything.</p>
+    <div class="rise hero-actions">
+      <a class="btn btn-primary" href="#work">See what I've shipped ↓</a>
+      <a class="btn btn-amber" href="#interview">Interview my AI ↓</a>
+      <a class="btn btn-ghost" href="#connect">Resume &amp; contact ↓</a>
+    </div>
+    <div class="rise stats">
+      <div class="stat"><b data-count="6">0</b><span>Products live</span></div>
+      <div class="stat"><b data-count="30" data-suffix="+">0</b><span>GitHub repos</span></div>
+      <div class="stat"><b data-count="100" data-suffix="%">0</b><span>Built solo</span></div>
+    </div>
+  </header>
+
+  <section id="work">
+    <div class="sec-label rise">Shipped &amp; running</div>
+    <div class="grid">
+
+      <a class="card rise" href="https://title22.app" target="_blank" rel="noopener">
+        <div class="card-top">
+          <h3>Title22</h3>
+          <span class="live-badge"><span class="dot"></span>LIVE</span>
+        </div>
+        <p>AI compliance assistant for California residential care facilities. Built hand-in-hand with a working RCFE administrator.</p>
+        <div class="tagrow"><span class="tag">Claude AI</span><span class="tag">Stripe</span><span class="tag">RBAC</span></div>
+        <span class="domain">title22.app</span>
+        <span class="go">open →</span>
+      </a>
+
+      <a class="card rise" href="https://rentyapp.net" target="_blank" rel="noopener">
+        <div class="card-top">
+          <h3>RentyApp</h3>
+          <span class="live-badge"><span class="dot"></span>LIVE</span>
+        </div>
+        <p>Property management with Claude vision-powered inspections — built by an actual licensed property manager (me).</p>
+        <div class="tagrow"><span class="tag">Claude Vision</span><span class="tag">React</span><span class="tag">Supabase</span></div>
+        <span class="domain">rentyapp.net</span>
+        <span class="go">open →</span>
+      </a>
+
+      <a class="card rise" href="https://thejudgy.com" target="_blank" rel="noopener">
+        <div class="card-top">
+          <h3>TheJudgy</h3>
+          <span class="live-badge"><span class="dot"></span>LIVE</span>
+        </div>
+        <p>AI dispute mediation that settles arguments with a verdict — including live two-party courtroom sessions in real time.</p>
+        <div class="tagrow"><span class="tag">Realtime</span><span class="tag">PWA</span><span class="tag">Claude AI</span></div>
+        <span class="domain">thejudgy.com</span>
+        <span class="go">open →</span>
+      </a>
+
+      <a class="card rise" href="https://runp8.com" target="_blank" rel="noopener">
+        <div class="card-top">
+          <h3>OwnSite</h3>
+          <span class="live-badge"><span class="dot"></span>LIVE</span>
+        </div>
+        <p>Barry-X, an AI website builder with a promise: you own your code. No lock-in, no hostage subscriptions.</p>
+        <div class="tagrow"><span class="tag">AI builder</span><span class="tag">Stripe</span><span class="tag">Model fallback</span></div>
+        <span class="domain">via runp8.com</span>
+        <span class="go">open →</span>
+      </a>
+
+      <a class="card rise" href="https://iguide-7ln.pages.dev" target="_blank" rel="noopener">
+        <div class="card-top">
+          <h3>iGuide</h3>
+          <span class="live-badge"><span class="dot"></span>LIVE</span>
+        </div>
+        <p>AI build guides for makers — step-by-step plans with rare and specialty parts sourcing, in 10 languages.</p>
+        <div class="tagrow"><span class="tag">Claude AI</span><span class="tag">10 languages</span></div>
+        <span class="domain">iguide</span>
+        <span class="go">open →</span>
+      </a>
+
+      <a class="card rise" href="https://postpilots.xyz" target="_blank" rel="noopener">
+        <div class="card-top">
+          <h3>PostPilots</h3>
+          <span class="live-badge"><span class="dot"></span>LIVE</span>
+        </div>
+        <p>AI social captions and TikTok storyboard generation for creators who'd rather make than write.</p>
+        <div class="tagrow"><span class="tag">Claude AI</span><span class="tag">LinkedIn OAuth</span></div>
+        <span class="domain">postpilots.xyz</span>
+        <span class="go">open →</span>
+      </a>
+
+    </div>
+  </section>
+
+  <section>
+    <div class="sec-label rise">What I believe</div>
+    <div class="principles">
+      <div class="principle rise">
+        <h4>You own your code.</h4>
+        <p>I started RunP8 after platforms held my own code hostage behind subscriptions. Never again — not for me, not for my users.</p>
+      </div>
+      <div class="principle rise">
+        <h4>No dark patterns.</h4>
+        <p>Fair free tiers, transparent billing, cancel anytime. Trust is the product underneath the product.</p>
+      </div>
+      <div class="principle rise">
+        <h4>Build from the inside.</h4>
+        <p>I only build for industries I actually work in. Domain truth beats market research.</p>
+      </div>
+    </div>
+  </section>
+
+  <section>
+    <div class="sec-label rise">How it's all built</div>
+    <div class="chips rise">
+      <span class="chip">Anthropic Claude API</span>
+      <span class="chip">Cloudflare Workers</span>
+      <span class="chip">Cloudflare Pages</span>
+      <span class="chip">Supabase · Postgres · RLS</span>
+      <span class="chip">Stripe billing</span>
+      <span class="chip">React / Vite</span>
+      <span class="chip">PWA · mobile-first</span>
+      <span class="chip">Prompt engineering</span>
+      <span class="chip">Model fallback (Haiku→Sonnet)</span>
+      <span class="chip">Usage metering</span>
+    </div>
+  </section>
+
+  <section class="about">
+    <div class="sec-label rise">About</div>
+    <p class="rise"><strong>I build tools for industries I actually work in.</strong> I manage rental properties in Fresno. My partner administers residential care facilities. That's why Title22 and RentyApp aren't guesses — they're built from the inside.</p>
+    <div class="creds rise">
+      <div class="cred">RCFE / CBRC Administrator (California)</div>
+      <div class="cred">Licensed Property Manager</div>
+      <div class="cred">Certified Home Inspector</div>
+    </div>
+  </section>
+
+  <section id="interview">
+    <div class="sec-label rise">Interview my AI</div>
+    <div class="card rise" style="cursor:default">
+      <div class="card-top">
+        <h3>Ask me anything — answered by AI</h3>
+        <span class="live-badge"><span class="dot"></span>LIVE</span>
+      </div>
+      <p>This assistant answers from Eli's real work history — and says "I don't know" instead of making things up. Recruiter? Start here at 2am.</p>
+      <div class="chat-box">
+        <div class="chat-log" id="chatLog">
+          <div class="msg ai">Hi! I'm Eli's AI interview assistant. Ask me about his products, how he builds, his background — anything a first-round interview would cover.</div>
+        </div>
+        <div class="chat-hints">
+          <button class="hint" type="button">What's the hardest bug he's fixed?</button>
+          <button class="hint" type="button">Does he need visa sponsorship?</button>
+          <button class="hint" type="button">What's his tech stack?</button>
+        </div>
+        <div class="chat-row">
+          <input id="chatInput" type="text" maxlength="500" placeholder="Ask about Eli..." autocomplete="off">
+          <button id="chatSend" type="button">Ask</button>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section id="connect">
+    <div class="sec-label rise">Resume &amp; contact</div>
+    <div class="card rise" style="cursor:default">
+      <div class="card-top">
+        <h3>Let's build something.</h3>
+        <span class="live-badge"><span class="dot"></span>OPEN TO WORK</span>
+      </div>
+      <p>Open to collaborations, opportunities, and hard problems at the intersection of AI and real-world work. Grab the resume, or reach out directly.</p>
+      <div class="hero-actions" style="margin-top:18px">
+        <a class="btn btn-amber" href="resume.html">View resume</a>
+        <a class="btn btn-primary" href="mailto:infomomtelo@gmail.com">Email me</a>
+        <a class="btn btn-ghost" href="https://www.tiktok.com/@judgyjudge" target="_blank" rel="noopener">TikTok @judgyjudge</a>
+      </div>
+      <span class="domain">infomomtelo@gmail.com · Fresno, CA</span>
+    </div>
+  </section>
+
+  <footer>
+    <p>elicristobal.com · built solo, deployed on Cloudflare Pages · <a href="https://runp8.com" target="_blank" rel="noopener">runp8.com</a></p>
+  </footer>
+
+</div>
+
+<script>
+(function(){
+  var reduced = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+
+  // Scroll reveals
+  var risers = document.querySelectorAll('.rise');
+  if (reduced || !('IntersectionObserver' in window)) {
+    risers.forEach(function(el){ el.classList.add('in'); });
+  } else {
+    var io = new IntersectionObserver(function(entries){
+      entries.forEach(function(e){
+        if (e.isIntersecting) { e.target.classList.add('in'); io.unobserve(e.target); }
+      });
+    }, { threshold: 0.12 });
+    risers.forEach(function(el){ io.observe(el); });
+  }
+
+  // Animated counters
+  var counters = document.querySelectorAll('[data-count]');
+  function runCounter(el){
+    var target = parseInt(el.getAttribute('data-count'), 10);
+    var suffix = el.getAttribute('data-suffix') || '';
+    if (reduced) { el.textContent = target + suffix; return; }
+    var start = null, dur = 1100;
+    function step(ts){
+      if (!start) start = ts;
+      var p = Math.min((ts - start) / dur, 1);
+      var eased = 1 - Math.pow(1 - p, 3);
+      el.textContent = Math.round(eased * target) + suffix;
+      if (p < 1) requestAnimationFrame(step);
+    }
+    requestAnimationFrame(step);
+  }
+  if ('IntersectionObserver' in window && !reduced) {
+    var cio = new IntersectionObserver(function(entries){
+      entries.forEach(function(e){
+        if (e.isIntersecting) { runCounter(e.target); cio.unobserve(e.target); }
+      });
+    }, { threshold: 0.5 });
+    counters.forEach(function(el){ cio.observe(el); });
+  } else {
+    counters.forEach(runCounter);
+  }
+
+  // Cursor glow on cards (desktop only)
+  if (window.matchMedia('(hover: hover)').matches) {
+    document.querySelectorAll('.card').forEach(function(card){
+      card.addEventListener('mousemove', function(ev){
+        var r = card.getBoundingClientRect();
+        card.style.setProperty('--mx', (ev.clientX - r.left) + 'px');
+        card.style.setProperty('--my', (ev.clientY - r.top) + 'px');
+      });
+    });
+  }
+
+  // ---- AI interview widget ----
+  var WORKER_URL = "https://YOUR-WORKER.workers.dev"; // <-- set after deploying interview-worker.js
+  var log = document.getElementById('chatLog');
+  var input = document.getElementById('chatInput');
+  var sendBtn = document.getElementById('chatSend');
+  var history = [];
+  var busy = false;
+
+  function addMsg(text, cls){
+    var d = document.createElement('div');
+    d.className = 'msg ' + cls;
+    d.textContent = text;
+    log.appendChild(d);
+    log.scrollTop = log.scrollHeight;
+    return d;
+  }
+
+  function ask(q){
+    if (busy || !q) return;
+    busy = true; sendBtn.disabled = true;
+    addMsg(q, 'user');
+    input.value = '';
+    var thinking = addMsg('thinking...', 'ai thinking');
+    fetch(WORKER_URL, {
+      method: 'POST',
+      headers: {'Content-Type':'application/json'},
+      body: JSON.stringify({ question: q, history: history })
+    })
+    .then(function(r){ return r.json(); })
+    .then(function(data){
+      thinking.remove();
+      var answer = data.answer || data.error || 'Something went wrong — email Eli at infomomtelo@gmail.com.';
+      addMsg(answer, 'ai');
+      history.push({role:'user', content:q}, {role:'assistant', content:answer});
+      if (history.length > 10) history = history.slice(-10);
+    })
+    .catch(function(){
+      thinking.remove();
+      addMsg('Connection hiccup — try again, or email Eli at infomomtelo@gmail.com.', 'ai');
+    })
+    .finally(function(){ busy = false; sendBtn.disabled = false; });
+  }
+
+  sendBtn.addEventListener('click', function(){ ask(input.value.trim()); });
+  input.addEventListener('keydown', function(e){ if (e.key === 'Enter') ask(input.value.trim()); });
+  document.querySelectorAll('.hint').forEach(function(h){
+    h.addEventListener('click', function(){ ask(h.textContent); });
+  });
+})();
+</script>
+
+</body>
+</html>
