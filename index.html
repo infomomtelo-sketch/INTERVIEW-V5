@@ -160,6 +160,9 @@
     font-family:'IBM Plex Mono',monospace;font-size:.68rem;letter-spacing:.1em;
     color:var(--live);flex:none;
   }
+  .live-badge.beta{color:var(--amber)}
+  .live-badge.beta .dot{background:var(--amber)}
+  .live-badge.beta .dot::after{border-color:var(--amber)}
   .card p{color:var(--mist);font-size:.92rem;max-width:52ch}
   .card .go{
     position:absolute;right:20px;bottom:18px;color:var(--live);
@@ -254,9 +257,9 @@
 <div class="wrap">
 
   <header>
-    <div class="rise status-strip"><span class="dot"></span>6 PRODUCTS · LIVE NOW</div>
+    <div class="rise status-strip"><span class="dot"></span>6 PRODUCTS · LIVE &amp; IN PROGRESS</div>
     <h1 class="rise">I ship AI products <em>end to end.</em></h1>
-    <p class="rise lede">I'm Eli Cristobal — solo founder of RunP8. I design, build, deploy, and grow AI-powered SaaS products: no PM, no designer, no architect. Just idea → production. Everything below is live. Tap anything.</p>
+    <p class="rise lede">I'm Eli Cristobal — AI Product Engineer and Founder building production software for real-world operations. I design, build, deploy, and improve AI-powered products end to end across healthcare, compliance, and property management. No PM, no designer, no architect — just idea → production. Everything below is live. Some are finished, some are still being finished, and the badge on each card says which. Tap anything.</p>
     <div class="rise hero-actions">
       <a class="btn btn-primary" href="#work">See what I've shipped ↓</a>
       <a class="btn btn-amber" href="#interview">Ask Nosy about me ↓</a>
@@ -287,7 +290,7 @@
       <a class="card rise" href="https://tello.live" target="_blank" rel="noopener">
         <div class="card-top">
           <h3>Tello Live</h3>
-          <span class="live-badge"><span class="dot"></span>LIVE</span>
+          <span class="live-badge beta"><span class="dot"></span>LIVE BETA</span>
         </div>
         <p>A free AI chat for any business website, no card needed. Green Tello is a private AI assistant: $19 a month after 7 days free.</p>
         <div class="tagrow"><span class="tag">Claude AI</span><span class="tag">Cloudflare Workers</span></div>
@@ -298,7 +301,7 @@
       <a class="card rise" href="https://staff.tello.live" target="_blank" rel="noopener">
         <div class="card-top">
           <h3>Tello Staff</h3>
-          <span class="live-badge"><span class="dot"></span>LIVE</span>
+          <span class="live-badge beta"><span class="dot"></span>LIVE BETA</span>
         </div>
         <p>Staffing for residential care home admins: a schedule board every caregiver can read, a daily coverage view, a staff directory and an AI copilot that knows your roster.</p>
         <div class="tagrow"><span class="tag">AI copilot</span><span class="tag">Scheduling</span></div>
@@ -321,7 +324,7 @@
       <a class="card rise" href="https://ownsite.app" target="_blank" rel="noopener">
         <div class="card-top">
           <h3>OwnSite</h3>
-          <span class="live-badge"><span class="dot"></span>LIVE</span>
+          <span class="live-badge beta"><span class="dot"></span>LIVE BETA</span>
         </div>
         <p>Barry-X, an AI website builder with a promise: you own your code. No lock-in, no hostage subscriptions.</p>
         <div class="tagrow"><span class="tag">AI builder</span><span class="tag">Stripe</span><span class="tag">Model fallback</span></div>
@@ -332,7 +335,7 @@
       <a class="card rise" href="https://thelo.fyi" target="_blank" rel="noopener">
         <div class="card-top">
           <h3>Thelo</h3>
-          <span class="live-badge"><span class="dot"></span>LIVE</span>
+          <span class="live-badge beta"><span class="dot"></span>LIVE BETA</span>
         </div>
         <p>An AI assistant with a voiceover studio and a video demo builder — ask it anything, then turn the answer into audio and video.</p>
         <div class="tagrow"><span class="tag">AI assistant</span><span class="tag">Voiceover</span><span class="tag">Video demos</span></div>
@@ -378,11 +381,15 @@
     </div>
   </section>
 
+  <section>
+    <div class="sec-label rise">End-to-end engineering ownership</div>
+    <p class="rise" style="color:var(--mist);max-width:62ch">I personally scope, design, code, test, deploy, and maintain these products. I use AI coding assistance, but I review, test, merge, and take responsibility for every change.</p>
+  </section>
+
   <section class="about">
     <div class="sec-label rise">About</div>
     <p class="rise"><strong>I build tools for industries I actually work in.</strong> I manage rental properties in Fresno. My partner administers residential care facilities. That's why Title22 and EC Rental aren't guesses — they're built from the inside.</p>
     <div class="creds rise">
-      <div class="cred">RCFE / CBRC Administrator (California)</div>
       <div class="cred">Licensed Property Manager</div>
       <div class="cred">Certified Home Inspector</div>
     </div>
@@ -395,7 +402,7 @@
         <h3>Nosy — ask me anything about Eli</h3>
         <span class="live-badge"><span class="dot"></span>LIVE</span>
       </div>
-      <p>Nosy is Eli's resident gossip: dying to tell you everything about him — but only true things, straight from his real work history. Recruiter? Start here at 2am.</p>
+      <p>Ask Nosy about my work. She's an AI assistant trained on my verified work history, products, and technical experience — and she's dying to tell you everything, but only true things, straight from my real work history. Recruiter? Start here at 2am.</p>
       <div class="chat-box">
         <div class="chat-log" id="chatLog">
           <div class="msg ai">Well hello! I'm Nosy, and I know everything about Eli worth knowing. Go on, ask — I've been DYING to tell someone.</div>
@@ -422,7 +429,7 @@
       </div>
       <p>Open to collaborations, opportunities, and hard problems at the intersection of AI and real-world work. Grab the resume, or reach out directly.</p>
       <div class="hero-actions" style="margin-top:18px">
-        <a class="btn btn-amber" href="resume.html">View resume</a>
+        <a class="btn btn-amber" href="Eli_Cristobal.pdf" download>Download resume (PDF)</a>
         <a class="btn btn-primary" href="mailto:infomomtelo@gmail.com">Email me</a>
         <a class="btn btn-ghost" href="https://www.tiktok.com/@thejudgy.com" target="_blank" rel="noopener">TikTok @thejudgy.com</a>
       </div>
