@@ -12,7 +12,7 @@ const PROFILE = `
 IDENTITY
 - Name: Eli Cristobal. Location: Fresno, CA.
 - Solo founder of RunP8 LLC — a portfolio of AI-powered SaaS products.
-- Contact: infomomtelo@gmail.com · runp8.com
+- Contact: eli@title-22.com · runp8.com
 
 ORIGIN STORY (why he started)
 Eli got burned by AI app-builder platforms that held his code hostage behind
